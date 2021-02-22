@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <!-- FONTS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+  <title>Tweet Maker for Instagram,Facebook,Twitter Post</title>
+</head>
+
+<body>
+
+  <style media="screen">
+    @font-face {
+      font-family: 'Segoe UI';
+      font-style: normal;
+      font-weight: normal;
+      src: local('Segoe UI'), url('font/Segoe-UI.ttf') format('ttf');
+    }
+
+    body {
+      background-color: #eee;
+      font-family: "Open Sans", Arial, sans-serif;
+    }
+
+    form label {
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+
+    .header {
+      width: 100%;
+      height: 62px;
+      line-height: 62px;
+      background-color: #ffffff;
+      padding: 0 20px 0px 20px;
+      margin-bottom: 20px !important;
+      border: 1px solid rgba(0, 0, 0, .125);
+      border-radius: 6px;
+    }
+
+    .footer {
+      width: 100%;
+      height: 52px;
+      line-height: 52px;
+      background-color: #ffffff;
+      padding: 0 20px 0px 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 0, 0, .125);
+      border-radius: 6px;
+    }
+
+    .footer-left {
+      float: left;
+    }
+
+    .footer-right {
+      float: right;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      width: 100%;
+      height: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 0;
+      border-radius: 6px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    /*FORM*/
+    .file {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .file input {
+      position: absolute;
+      font-size: 50px;
+      opacity: 0;
+      right: 0;
+      top: 0;
+    }
+
+    /*PREVIEW*/
+    .previewPanel {
+      width: 100%;
+      padding: 40px;
+      border: 1px solid rgba(0, 0, 0, .125);
+      border-radius: 8px;
+      background-image: url(img/descont.png);
+    }
+
+    .preview {
+      float: none;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 25px;
+    }
+
+    #arrowImg {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-top: 8px;
+    }
+
+    #verifiedImg {
+      width: 18px;
+      height: 18px;
+      margin-top: -3px;
+    }
+
+    .link {
+      color: #1da1f2;
+    }
+
+    /*RESPONSIVE*/
+    @media only screen and (max-width: 768px) {
+
+      /* For mobile phones: */
+      .previewPanel {
+        padding: 0;
+      }
+
+      .footer {
+        text-align: center;
+        height: auto;
+        line-height: 32px;
+        padding: 12px;
+      }
+
+      .footer-left,
+      .footer-right {
+        float: none;
+      }
+
+      #previewName {
+        font-size: 16px !important;
+      }
+
+      #previewText {
+        font-size: 20px !important;
+      }
+    }
+  </style>
+
+  <div class="container" style="margin-top: 30px;">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="titleText" class="header title">
+          Twitter Post SS Generator
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <form>
+            <div class="form-group">
+              <div class="form-group row">
+                <label id="formThemeText" for="theme" class="col-sm-4 col-form-label">Theme:</label>
+                <div class="col-sm-8">
+                  <select class="form-control" id="theme" name="theme">
+                    <option id="formThemeOption0Text" value="0">Light</option>
+                    <option id="formThemeOption1Text" value="1">Dark</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="form-group">
+              <div class="img-select">
+                <label id="formProfileImgText">Profile Photo:</label>
+                <div class="form-group row">
+                  <label id="formFrameText" for="frame" class="col-sm-4 col-form-label">Frame:</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" id="frame" name="frame">
+                      <option id="formFrameOption0Text" value="0">Circle</option>
+                      <option id="formFrameOption1Text" value="1">Rounded</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label id="formImgText" for="formProfileImg" class="col-sm-4 col-form-label">Photo:</label>
+                  <div class="col-sm-8">
+                    <div style="float:left;">
+                      <img id="formProfileImg" class="rounded-circle" src="img/profile.jpg" title="Tweet Generator Profile Photo" alt="Tweet Generator Photo Picture" width="50" height="50">
+                    </div>
+                    <div style="float:left; margin-left: 15px;">
+                      <div class="file">
+                        <button id="formProfileImgSelectText" class="btn btn-primary" style="height: 50px;">
+                          <i class="fa fa-images"></i> Select IMG
+                          <input type="file" name="file" id="formProfileImgSelect" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label id="formAccountText" for="formAccountStatus">Verified Account:</label>
+              <select class="form-control" id="formAccountStatus" name="formAccountStatus" aria-describedby="accountHelp">
+                <option id="formAccountOption0Text" value="0">No</option>
+                <option id="formAccountOption1Text" value="1">Yes</option>
+              </select>
+              <small id="accountHelp" class="form-text text-muted">Your confirmed account icon is added next to your name.</small>
+            </div>
+
+            <div class="form-group">
+              <label id="formNameText" for="formName">Name:</label>
+              <input type="text" class="form-control" id="formName" aria-describedby="nameHelp" placeholder="Name Surname">
+              <small id="nameHelp" class="form-text text-muted">Enter the name that will appear in the picture.</small>
+            </div>
+
+            <div class="form-group">
+              <label id="formUsernameText" for="formUsername">User name:</label>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input type="text" class="form-control" aria-describedby="usernameHelp" id="formUsername" placeholder="username">
+              </div>
+              <small id="usernameHelp" class="form-text text-muted">Enter the user name that will appear in the picture.</small>
+            </div>
+
+            <div class="form-group">
+              <label id="formContentText" for="formContent">Content:</label>
+              <textarea class="form-control" id="formContent" aria-describedby="contentHelp" rows="3" placeholder="Write content." maxlength="280"></textarea>
+              <small id="contentHelp" class="form-text text-muted">Enter the description that will appear in the picture.</small>
+            </div>
+
+            <div class="form-group">
+              <label id="formContentImgText" for="formContentImgStatus">Content Image:</label>
+              <select class="form-control" id="formContentImgStatus" name="formContentImgStatus" aria-describedby="contentImgSelectHelp">
+                <option id="formContentImgOption0Text" value="0">No Image</option>
+                <option id="formContentImgOption1Text" value="1">Image Available</option>
+              </select>
+              <small id="contentImgSelectHelp" class="form-text text-muted">Added image below content.</small>
+              <div id="formContentImgBlock" style="display: none;">
+                <img id="formContentImg" src="img/select.png" title="Tweet Generator Post Image" alt="Tweet Generator Post Image" width="100%" style="border-radius: .50rem;margin: 15px 0 15px 0;">
+                <div class="file">
+                  <button id="formContentImgSelectText" class="btn btn-primary" style="width: 100%;height: 50px;">
+                    <i class="fa fa-images"></i> Select IMG
+                    <form runat="server">
+                      <input type="file" name="file" id="formContentImgSelect" />
+                    </form>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card">
+          <p id="formPreviewText" class="title">Preview</p>
+          <div class="previewPanel">
+            <div class="preview" id="preview">
+              <div>
+                <label>
+                  <img id="previewProfileImg" class="rounded-circle" src="img/profile.jpg" title="Tweet Generator Preview Profile Photo" alt="Tweet Generator Preview Profile Photo" style="float: left;margin-right: 10px;" width="50" height="50">
+                  <span style="float:left;line-height: 1.35;padding-top: 3px;">
+                    <span id="previewName" style="display:inline-block;color:#14171a;font-size:18px;font-weight: bold;">Name Surname</span>
+                    <span><img style="display: none;" id="verifiedImg" src="img/verified-light.png" alt="Verified Account" title="Verified Account"></span>
+                    <span id="previewUsername" style="display:block;color:#657786;font-size:14px;">@username</span>
+                  </span>
+                </label>
+                <label style="float:right;">
+                  <img id="arrowImg" src="img/arrow-light.png" alt="Tweet Arrow">
+                </label>
+              </div>
+              <div>
+                <div id="previewText" style="font-size:25px;line-height: 32px;letter-spacing: .01em;">
+                  Edit this text on content. <span class="link">@lifeloox</span>
+                </div>
+                <div id="previewContentImgBlock" style="margin-top: 20px; display: none;">
+                  <img id="previewContentImg" src="img/select.png" title="Tweet Generator Preview Post Image" alt="Tweet Generator Preview Post Image" width="100%" style="border-radius: .50rem;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="download" class="btn btn-primary" style="height:42px;margin-top: 15px;"><i class="fa fa-download"></i> Download Screenshot</button>
+          <div id="img-out"></div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="footer">
+          <div id="footerLeftText" class="footer-left">
+            All rights reserved &copy; 2018
+          </div>
+          <div id="footerRightText" class="footer-right">
+            This website coded by <a href="#"><strong>Fırat KAYA</strong></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="html2canvas.min.js"></script>
+  <script type="text/javascript">
+    var d = new Date();
+
+    function writeTurkish() {
+      $("html").attr("lang", "tr");
+      $("#titleText").text("Twitter Gönderi SS Oluşturucu");
+      $("#formThemeText").text("Tema:");
+      $("#formThemeOption0Text").text("Beyaz");
+      $("#formThemeOption1Text").text("Siyah");
+      $("#formProfileImgText").text("Profil Fotoğrafı:");
+      $("#formFrameText").text("Çerçeve:");
+      $("#formFrameOption0Text").text("Daire");
+      $("#formFrameOption1Text").text("Oval");
+      $("#formImgText").text("Fotoğraf:");
+      $("#formProfileImg").attr({ title: "Tweet Oluşturucu Profil Fotoğrafı", alt: "Tweet Oluşturucu Profil Fotoğrafı" });
+      $("#formProfileImgSelectText").html('<i class="fa fa-images"></i> Resim Seç<input type="file" name="file" id="formProfileImgSelect"/>');
+      $("#formAccountText").text("Doğrulanmış Hesap:");
+      $("#formAccountOption0Text").text("Hayır");
+      $("#formAccountOption1Text").text("Evet");
+      $("#accountHelp").text("Adınızın yanına doğrulanmış hesap ikonu eklenir.");
+      $("#formNameText").text("İsim:");
+      $("#formName").attr("placeholder", "İsim Soyisim");
+      $("#nameHelp").text("Resimde gözükecek ismi giriniz.");
+      $("#formUsernameText").text("Kullanıcı Adı:");
+      $("#formUsername").attr("placeholder", "kullanıcıadı");
+      $("#usernameHelp").text("Resimde gözükecek kullanıcı adını giriniz.");
+      $("#verifiedImg").attr({ title: "Doğrulanmış Hesap", alt: "Doğrulanmış Hesap" });
+      $("#formContentText").text("Açıklama:");
+      $("#formContent").attr("placeholder", "Açıklama yazınız.");
+      $("#contentHelp").text("*Link eklemek için: {{link}}");
+      $("#formContentImgText").text("İçerik Resim:");
+      $("#formContentImgOption0Text").text("Resim Yok");
+      $("#formContentImgOption1Text").text("Resim Var");
+      $("#contentImgSelectHelp").text("Açıklamanın altına eklenen resim.");
+      $("#formContentImg").attr({ title: "Tweet Oluşturucu İçerik Resmi", alt: "Tweet Oluşturucu İçerik Resmi" });
+      $("#formContentImgSelectText").html('<i class="fa fa-images"></i> Resim Seç<form runat="server"><input type="file" name="file" id="formContentImgSelect"/></form>');
+      $("#formPreviewText").text("Önizleme");
+      $("#previewProfileImg").attr({ title: "Tweet Oluşturucu Profil Fotoğrafı Önizlemesi", alt: "Tweet Oluşturucu Profil Fotoğrafı Önizlemesi" });
+      $("#previewName").text("İsim Soyisim");
+      $("#previewUsername").text("@kullaniciadi");
+      $("#previewText").html('Bu yazıyı açıklama bölümünden düzenleyin. <span class="link">@lifeloox</span>');
+      $("#previewContentImg").attr({ title: "Tweet Oluşturucu İçerik Resmi Önizlemesi", alt: "Tweet Oluşturucu İçerik Resmi Önizlemesi" });
+      $("#download").html('<i class="fa fa-download"></i> Ekran Görüntüsünü İndir');
+      $("#footerLeftText").html("Tüm Hakları Saklıdır &copy; " + d.getFullYear());
+      $("#footerRightText").html('Bu site <a href="#"><strong>Fırat KAYA</strong></a> tarafından kodlandı.');
+    }
+
+    function writeEnglish() {
+      $("html").attr("lang", "en-US");
+      $("#titleText").text("Twitter Post SS Generator");
+      $("#formThemeText").text("Theme:");
+      $("#formThemeOption0Text").text("Light");
+      $("#formThemeOption1Text").text("Dark");
+      $("#formProfileImgText").text("Profile Photo:");
+      $("#formFrameText").text("Frame:");
+      $("#formFrameOption0Text").text("Circle");
+      $("#formFrameOption1Text").text("Rounded");
+      $("#formImgText").text("Photo:");
+      $("#formProfileImg").attr({ title: "Tweet Generator Profile Photo", alt: "Tweet Generator Profile Photo" });
+      $("#formProfileImgSelectText").html('<i class="fa fa-images"></i> Select IMG<input type="file" name="file" id="formProfileImgSelect"/>');
+      $("#formAccountText").text("Verified Account:");
+      $("#formAccountOption0Text").text("No");
+      $("#formAccountOption1Text").text("Yes");
+      $("#accountHelp").text("Your confirmed account icon is added next to your name.");
+      $("#formNameText").text("Name:");
+      $("#formName").attr("placeholder", "Name Surname");
+      $("#nameHelp").text("Enter the name that will appear in the picture.");
+      $("#formUsernameText").text("User name:");
+      $("#formUsername").attr("placeholder", "username");
+      $("#usernameHelp").text("Enter the username that will appear in the picture.");
+      $("#verifiedImg").attr({ title: "Verified Account", alt: "Verified Account" });
+      $("#formContentText").text("Content:");
+      $("#formContent").attr("placeholder", "Write content.");
+      $("#contentHelp").text("*For add link: {{link}}");
+      $("#formContentImgText").text("Content Image:");
+      $("#formContentImgOption0Text").text("No Image");
+      $("#formContentImgOption1Text").text("Image Available");
+      $("#contentImgSelectHelp").text("Added image below content.");
+      $("#formContentImg").attr({ title: "Tweet Generator Post Image", alt: "Tweet Generator Post Image" });
+      $("#formContentImgSelectText").html('<i class="fa fa-images"></i> Select IMG<form runat="server"><input type="file" name="file" id="formContentImgSelect"/></form>');
+      $("#formPreviewText").text("Preview");
+      $("#previewProfileImg").attr({ title: "Tweet Generator Preview Profile Photo", alt: "Tweet Generator Preview Profile Photo" });
+      $("#previewName").text("Name Surname");
+      $("#previewUsername").text("@username");
+      $("#previewText").html('Edit this text on content. <span class="link">@lifeloox</span>');
+      $("#previewContentImg").attr({ title: "Tweet Generator Preview Post Image", alt: "Tweet Generator Preview Post Image" });
+      $("#download").html('<i class="fa fa-download"></i> Download Screenshot');
+      $("#footerLeftText").html("All rights reserved &copy; " + d.getFullYear());
+      $("#footerRightText").html('This website coded by <a href="#"><strong>Fırat KAYA</strong></a>');
+    }
+
+    function langWrite($lang) {
+      if ($lang == "tr" || $lang == "tr-TR") {
+        writeTurkish();
+      } else if ($lang == "en") {
+        writeEnglish();
+      } else {
+        writeEnglish();
+      }
+    }
+
+    $(document).ready(function() {
+
+      /*Tarayıcı Diline Göre Yazı Değiştirme*/
+      var browserLang = navigator.language || navigator.userLanguage; // Tarayıcı Dili
+      langWrite(browserLang);
+
+      /*Sayfa Açıldığında son yazdıkları geri gelecek*/
+      if (localStorage.getItem("theme") == "1") {
+        $("#theme").val(1).change();
+        $('.preview').css('background-color', '#1B2838');
+        $('#previewName').css('color', '#ffffff');
+        $('#previewUsername').css('color', '#8899a6');
+        $('#previewText').css('color', '#ffffff');
+        $("#verifiedImg").attr("src", "img/verified-dark.png");
+        $("#arrowImg").attr("src", "img/arrow-dark.png");
+      }
+      if (localStorage.getItem("frame") == "1") {
+        $("#frame").val(1).change();
+        $("#formProfileImg").toggleClass('rounded-circle rounded');
+        $("#previewProfileImg").toggleClass('rounded-circle rounded');
+      }
+      if (localStorage.getItem("profileImg") != null) {
+        $("#formProfileImg").attr("src", localStorage.getItem("profileImg"));
+        $("#previewProfileImg").attr("src", localStorage.getItem("profileImg"));
+      }
+      if (localStorage.getItem("account") == "1") {
+        $("#formAccountStatus").val(1).change();
+        $("#verifiedImg").css("display", "inline-block");
+      }
+      if (localStorage.getItem("name") != null) {
+        $("#formName").val(localStorage.getItem("name"));
+        $("#previewName").text(localStorage.getItem("name"));
+      }
+      if (localStorage.getItem("username") != null) {
+        $("#formUsername").val(localStorage.getItem("username"));
+        $("#previewUsername").text("@" + localStorage.getItem("username"));
+      }
+      if (localStorage.getItem("contentImgStatus") == "1") {
+        $("#formContentImgStatus").val(1).change();
+        $("#formContentImgBlock").css("display", "block");
+        $("#previewContentImgBlock").css("display", "block");
+      }
+
+      /*Profil resmi çerçeve*/
+      $("#frame").change(function() {
+        if ($("#frame").val() == 0) {
+          $("#formProfileImg").toggleClass('rounded rounded-circle');
+          $("#previewProfileImg").toggleClass('rounded rounded-circle');
+        } else {
+          $("#formProfileImg").toggleClass('rounded-circle rounded');
+          $("#previewProfileImg").toggleClass('rounded-circle rounded');
+        }
+      });
+
+      /*Tema*/
+      $("#theme").change(function() {
+        if ($("#theme").val() == 0) {
+          $('.preview').css('background-color', '#ffffff');
+          $('#previewName').css('color', '#14171a');
+          $('#previewUsername').css('color', '#657786');
+          $('#previewText').css('color', '#212529');
+          $("#verifiedImg").attr("src", "img/verified-light.png");
+          $("#arrowImg").attr("src", "img/arrow-light.png");
+        } else {
+          $('.preview').css('background-color', '#1B2838');
+          $('#previewName').css('color', '#ffffff');
+          $('#previewUsername').css('color', '#8899a6');
+          $('#previewText').css('color', '#ffffff');
+          $("#verifiedImg").attr("src", "img/verified-dark.png");
+          $("#arrowImg").attr("src", "img/arrow-dark.png");
+        }
+      });
+
+      /*Doğrulanmış Hesap*/
+      $("#formAccountStatus").change(function() {
+        if ($("#formAccountStatus").val() == 0) {
+          $("#verifiedImg").css("display", "none");
+        } else {
+          $("#verifiedImg").css("display", "inline-block");
+        }
+      });
+
+      /*Açıklama resmi durum*/
+      $("#formContentImgStatus").change(function() {
+        if ($("#formContentImgStatus").val() == 0) {
+          $("#formContentImgBlock").css("display", "none");
+          $("#previewContentImgBlock").css("display", "none");
+        } else {
+          $("#formContentImgBlock").css("display", "block");
+          $("#previewContentImgBlock").css("display", "block");
+        }
+      });
+
+      /*Yazıları önizle*/
+      $("#formName").keyup(function() {
+        if ($(this).val() == "") {
+          $("#previewName").text("...");
+        } else {
+          $("#previewName").text($(this).val());
+        }
+      });
+      $("#formUsername").keyup(function() {
+        if ($(this).val() == "") {
+          $("#previewUsername").text("@...");
+        } else {
+          $("#previewUsername").text("@" + $(this).val());
+        }
+      });
+      $("#formContent").keyup(function() {
+        var str = $(this).val()
+        if (str == "") {
+          $("#previewText").text("...");
+        } else {
+          str = str.replace(/\{{(.*?)\}}/gi, "<span class='link'>$1</span>");
+          $("#previewText").html(str);
+        }
+      });
+      $('#formContent').keypress(function(event) {
+        if (event.which == 13) {
+          event.preventDefault();
+          this.value = this.value + "\n";
+        }
+      });
+
+      /*Profil resmimi önizle*/
+      function profileReadURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#formProfileImg').attr('src', e.target.result);
+            $('#previewProfileImg').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#formProfileImgSelect").change(function() {
+        profileReadURL(this);
+      });
+
+      /*Açıklamadaki resmi önizle*/
+      function contentReadURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#formContentImg').attr('src', e.target.result);
+            $('#previewContentImg').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#formContentImgSelect").change(function() {
+        contentReadURL(this);
+      });
+
+      /*Resim oluştur ve indir*/
+      $("#download").click(function() {
+        $('.preview').css('width', '500px');
+        html2canvas(document.querySelector("#preview")).then(canvas => {
+          var a = document.createElement('a');
+          a.href = canvas.toDataURL("image/png");
+          a.download = "ss_" + Math.floor(Math.random() * 1001) + ".png";
+          a.click();
+          $('.preview').css('width', 'auto');
+        });
+        /*Resim indirilince kullacının bilgisayarına en son yazığı bilgileri kaydet*/
+        localStorage.setItem("theme", $("#theme").val());
+        localStorage.setItem("frame", $("#frame").val());
+        localStorage.setItem("profileImg", $("#formProfileImg").attr("src"));
+        localStorage.setItem("account", $("#formAccountStatus").val());
+        if ($("#formName").val() != "") {
+          localStorage.setItem("name", $("#formName").val());
+        }
+        if ($("#formUsername").val() != "") {
+          localStorage.setItem("username", $("#formUsername").val());
+        }
+        localStorage.setItem("contentImgStatus", $("#formContentImgStatus").val());
+      });
+
+    });
+  </script>
+</body>
+
+</html>
