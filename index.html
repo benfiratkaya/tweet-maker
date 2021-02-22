@@ -115,17 +115,23 @@
       padding: 25px;
     }
 
-    #arrowImg {
+    #moreImg {
       display: inline-block;
-      width: 15px;
-      height: 15px;
+      width: 18px;
+      height: 18px;
       margin-top: 8px;
+      background-image: url(./img/more.svg);
+      background-size: cover;
+      filter: invert(47%) sepia(34%) saturate(238%) hue-rotate(165deg) brightness(90%) contrast(88%);
     }
 
     #verifiedImg {
       width: 18px;
       height: 18px;
       margin-top: -3px;
+      background-image: url(./img/verified.svg);
+      background-size: cover;
+      filter: invert(75%) sepia(46%) saturate(7499%) hue-rotate(172deg) brightness(102%) contrast(90%);
     }
 
     .link {
@@ -200,7 +206,7 @@
                   <label id="formImgText" for="formProfileImg" class="col-sm-4 col-form-label">Photo:</label>
                   <div class="col-sm-8">
                     <div style="float:left;">
-                      <img id="formProfileImg" class="rounded-circle" src="img/profile.jpg" title="Tweet Generator Profile Photo" alt="Tweet Generator Photo Picture" width="50" height="50">
+                      <img id="formProfileImg" class="rounded-circle" src="img/profile.png" title="Tweet Generator Profile Photo" alt="Tweet Generator Photo Picture" width="50" height="50">
                     </div>
                     <div style="float:left; margin-left: 15px;">
                       <div class="file">
@@ -231,14 +237,14 @@
             </div>
 
             <div class="form-group">
-              <label id="formUsernameText" for="formUsername">User name:</label>
+              <label id="formUsernameText" for="formUsername">Username:</label>
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
                   <div class="input-group-text">@</div>
                 </div>
                 <input type="text" class="form-control" aria-describedby="usernameHelp" id="formUsername" placeholder="username">
               </div>
-              <small id="usernameHelp" class="form-text text-muted">Enter the user name that will appear in the picture.</small>
+              <small id="usernameHelp" class="form-text text-muted">Enter the username that will appear in the picture.</small>
             </div>
 
             <div class="form-group">
@@ -277,19 +283,21 @@
             <div class="preview" id="preview">
               <div>
                 <label>
-                  <img id="previewProfileImg" class="rounded-circle" src="img/profile.jpg" title="Tweet Generator Preview Profile Photo" alt="Tweet Generator Preview Profile Photo" style="float: left;margin-right: 10px;" width="50" height="50">
+                  <img id="previewProfileImg" class="rounded-circle" src="img/profile.png" title="Tweet Generator Preview Profile Photo" alt="Tweet Generator Preview Profile Photo" style="float: left;margin-right: 10px;" width="50" height="50">
                   <span style="float:left;line-height: 1.35;padding-top: 3px;">
-                    <span id="previewName" style="display:inline-block;color:#14171a;font-size:18px;font-weight: bold;">Name Surname</span>
-                    <span><img style="display: none;" id="verifiedImg" src="img/verified-light.png" alt="Verified Account" title="Verified Account"></span>
-                    <span id="previewUsername" style="display:block;color:#657786;font-size:14px;">@username</span>
+                    <div style="display: inline-flex; align-items: center;">
+                      <span id="previewName" style="display:inline-block;color:#14171a;font-size:15px;font-weight: bold;">Name Surname</span>
+                      <i style="display: none; margin-top: 2px; margin-left: 3px;" id="verifiedImg"></i>
+                    </div>
+                    <span id="previewUsername" style="display:block;color:#657786;font-size:15px;">@username</span>
                   </span>
                 </label>
                 <label style="float:right;">
-                  <img id="arrowImg" src="img/arrow-light.png" alt="Tweet Arrow">
+                  <i id="moreImg"></i>
                 </label>
               </div>
               <div>
-                <div id="previewText" style="font-size:25px;line-height: 32px;letter-spacing: .01em;">
+                <div id="previewText" style="font-size:23px;line-height: 32px;letter-spacing: .01em;">
                   Edit this text on content. <span class="link">@lifeloox</span>
                 </div>
                 <div id="previewContentImgBlock" style="margin-top: 20px; display: none;">
@@ -388,7 +396,7 @@
       $("#formNameText").text("Name:");
       $("#formName").attr("placeholder", "Name Surname");
       $("#nameHelp").text("Enter the name that will appear in the picture.");
-      $("#formUsernameText").text("User name:");
+      $("#formUsernameText").text("Username:");
       $("#formUsername").attr("placeholder", "username");
       $("#usernameHelp").text("Enter the username that will appear in the picture.");
       $("#verifiedImg").attr({ title: "Verified Account", alt: "Verified Account" });
@@ -431,12 +439,12 @@
       /*Sayfa Açıldığında son yazdıkları geri gelecek*/
       if (localStorage.getItem("theme") == "1") {
         $("#theme").val(1).change();
-        $('.preview').css('background-color', '#1B2838');
+        $('.preview').css('background-color', '#000000');
         $('#previewName').css('color', '#ffffff');
-        $('#previewUsername').css('color', '#8899a6');
-        $('#previewText').css('color', '#ffffff');
-        $("#verifiedImg").attr("src", "img/verified-dark.png");
-        $("#arrowImg").attr("src", "img/arrow-dark.png");
+        $('#previewUsername').css('color', '#6e767d');
+        $('#previewText').css('color', '#d9d9d9');
+        $("#verifiedImg").css("filter", "invert(80%) sepia(0%) saturate(849%) hue-rotate(311deg) brightness(97%) contrast(123%)");
+        $("#moreImg").css("filter", "invert(49%) sepia(9%) saturate(355%) hue-rotate(166deg) brightness(92%) contrast(95%)");
       }
       if (localStorage.getItem("frame") == "1") {
         $("#frame").val(1).change();
@@ -483,15 +491,15 @@
           $('#previewName').css('color', '#14171a');
           $('#previewUsername').css('color', '#657786');
           $('#previewText').css('color', '#212529');
-          $("#verifiedImg").attr("src", "img/verified-light.png");
-          $("#arrowImg").attr("src", "img/arrow-light.png");
+          $("#verifiedImg").css("filter", "invert(75%) sepia(46%) saturate(7499%) hue-rotate(172deg) brightness(102%) contrast(90%)");
+          $("#moreImg").css("filter", "invert(47%) sepia(34%) saturate(238%) hue-rotate(165deg) brightness(90%) contrast(88%)");
         } else {
-          $('.preview').css('background-color', '#1B2838');
+          $('.preview').css('background-color', '#000000');
           $('#previewName').css('color', '#ffffff');
-          $('#previewUsername').css('color', '#8899a6');
-          $('#previewText').css('color', '#ffffff');
-          $("#verifiedImg").attr("src", "img/verified-dark.png");
-          $("#arrowImg").attr("src", "img/arrow-dark.png");
+          $('#previewUsername').css('color', '#6e767d');
+          $('#previewText').css('color', '#d9d9d9');
+          $("#verifiedImg").css("filter", "invert(80%) sepia(0%) saturate(849%) hue-rotate(311deg) brightness(97%) contrast(123%)");
+          $("#moreImg").css("filter", "invert(49%) sepia(9%) saturate(355%) hue-rotate(166deg) brightness(92%) contrast(95%)");
         }
       });
 
