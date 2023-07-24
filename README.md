@@ -16,4 +16,29 @@ Bir kere bilgileri girmeniz ile tarayıcıya kayıt ediyor. Bu sayede bir dahaki
 
 После того, как вы введете информацию, она сохранит ее в браузере. Таким образом, информация заполняется автоматически при следующем использовании.
 
- #### автоматический перевод авторского текста
+
+ #### Updates July 24, 2023
+- Tweet'in altına güncel tarihin gösterilmesi eklendi;
+- Gönderinin altındaki görüntüleme sayısının gösterimi eklendi;
+- Görüntüleme sayısını belirleme yeteneği eklendi;
+- Rusçaya çeviri eklendi;
+- Ayların kısa biçimlerinin çevirileri eklendi - Rusça, Türkçe ve İngilizce;
+- Yüklenen avatarların görüntülenmesi düzeltildi;
+---
+- Added display of the current date under the tweet;
+- Added display of the number of views under the post;
+- Added the ability to specify the number of views;
+- Added translation into Russian;
+- Added translations of short forms of months - in Russian, Turkish and English;
+- Fixed display of loaded avatars;
+---
+- Добавлено отображение текущей даты под твитом;
+- Добавлено отображение кол-ва просмотров под постом;
+- Добавлена возможность указывать кол-во просмотров;
+- Добавлен перевод на Русский язык;
+- Добавны переводы кратких форм месяцев - на Русском, Турецком и Английских языках;
+- Исправлено отображение загруженных аватарок;
+
+Developer of the original code: [benfiratkaya](https://github.com/benfiratkaya) | [https://github.com/benfiratkaya/tweet-maker](https://github.com/benfiratkaya/tweet-maker)
+
+Making modifications and additions: [blyamur](https://github.com/blyamur)  | [https://github.com/blyamur](https://github.com/blyamur/tweet-maker)
