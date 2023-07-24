@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -10,12 +9,11 @@
   <!-- FONTS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-
+  <!-- Developer of the original code: benfiratkaya | https://github.com/benfiratkaya/tweet-maker -->
+  <!-- Making modifications and additions: blyamur | https://github.com/blyamur -->
   <title>Tweet Maker for Instagram,Facebook,Twitter Post</title>
 </head>
-
 <body>
-
   <style media="screen">
     @font-face {
       font-family: 'Segoe UI';
@@ -23,20 +21,16 @@
       font-weight: normal;
       src: local('Segoe UI'), url('font/Segoe-UI.ttf') format('ttf');
     }
-
     body {
       background-color: #eee;
       font-family: "Open Sans", Arial, sans-serif;
     }
-
     form label {
       font-weight: 600;
     }
-
     a {
       text-decoration: none !important;
     }
-
     .header {
       width: 100%;
       height: 62px;
@@ -47,7 +41,6 @@
       border: 1px solid rgba(0, 0, 0, .125);
       border-radius: 6px;
     }
-
     .footer {
       width: 100%;
       height: 52px;
@@ -58,22 +51,18 @@
       border: 1px solid rgba(0, 0, 0, .125);
       border-radius: 6px;
     }
-
     .footer-left {
       float: left;
     }
-
     .footer-right {
       float: right;
     }
-
     .title {
       font-size: 18px;
       font-weight: 600;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
-
     .card {
       width: 100%;
       height: auto;
@@ -84,13 +73,11 @@
       border-radius: 6px;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
-
     /*FORM*/
     .file {
       position: relative;
       overflow: hidden;
     }
-
     .file input {
       position: absolute;
       font-size: 50px;
@@ -98,7 +85,6 @@
       right: 0;
       top: 0;
     }
-
     /*PREVIEW*/
     .previewPanel {
       width: 100%;
@@ -107,32 +93,36 @@
       border-radius: 8px;
       background-image: url(img/descont.png);
     }
-
     .preview {
       float: none;
       margin: 0 auto;
       background-color: #ffffff;
       padding: 25px;
+		border-radius: 4px;
     }
-
+    .showDate {
+      margin-top: 20px;
+      color: rgb(83, 100, 113);
+      font-size: 14px;
+    }
+    #previewViews span{ 
+      font-size: 13px;
+    }
     #moreImg {
       display: inline-block;
       width: 18px;
       height: 18px;
       margin-top: 8px;
     }
-
     #verifiedImg {
       width: 18px;
       height: 18px;
       margin-top: 2px;
       margin-left: 3px;
     }
-
     .link {
       color: #1da1f2;
     }
-
     /*RESPONSIVE*/
     @media only screen and (max-width: 768px) {
 
@@ -140,29 +130,24 @@
       .previewPanel {
         padding: 0;
       }
-
       .footer {
         text-align: center;
         height: auto;
         line-height: 32px;
         padding: 12px;
       }
-
       .footer-left,
       .footer-right {
         float: none;
       }
-
       #previewName {
         font-size: 16px !important;
       }
-
       #previewText {
         font-size: 20px !important;
       }
     }
   </style>
-
   <div class="container" style="margin-top: 30px;">
     <div class="row">
       <div class="col-md-12">
@@ -187,7 +172,7 @@
             <hr>
             <div class="form-group">
               <div class="img-select">
-                <label id="formProfileImgText">Profile Photo:</label>
+                <label id="formProfileImgText">Аватар:</label>
                 <div class="form-group row">
                   <label id="formFrameText" for="frame" class="col-sm-4 col-form-label">Frame:</label>
                   <div class="col-sm-8">
@@ -201,7 +186,7 @@
                   <label id="formImgText" for="formProfileImg" class="col-sm-4 col-form-label">Photo:</label>
                   <div class="col-sm-8">
                     <div style="float:left;">
-                      <img id="formProfileImg" class="rounded-circle" src="img/profile.png" style="object-fit: cover;" title="Tweet Generator Profile Photo" alt="Tweet Generator Photo Picture" width="50" height="50">
+                      <img id="formProfileImg" class="rounded-circle" src="img/profile.png" title="Tweet Generator Profile Photo" alt="Tweet Generator Photo Picture" style="object-fit: cover;" width="50" height="50">
                     </div>
                     <div style="float:left; margin-left: 15px;">
                       <div class="file">
@@ -228,7 +213,7 @@
             <div class="form-group">
               <label id="formNameText" for="formName">Name:</label>
               <input type="text" class="form-control" id="formName" aria-describedby="nameHelp" placeholder="Name Surname">
-              <small id="nameHelp" class="form-text text-muted">Enter the name that will appear in the picture.</small>
+              <small id="nameHelp" class="form-text text-muted">Enter the username that will appear in the picture.</small>
             </div>
 
             <div class="form-group">
@@ -247,6 +232,14 @@
               <textarea class="form-control" id="formContent" aria-describedby="contentHelp" rows="3" placeholder="Write content." maxlength="280"></textarea>
               <small id="contentHelp" class="form-text text-muted">Enter the description that will appear in the picture.</small>
             </div>
+
+            <div class="form-group">
+              <label id="formCountText" for="formCount">Views:</label>
+              <input type="text" class="form-control" id="formCount" aria-describedby="countHelp" placeholder="Views">
+              <small id="countHelp" class="form-text text-muted">Specify the number of views to display.</small>
+            </div>
+
+
 
             <div class="form-group">
               <label id="formContentImgText" for="formContentImgStatus">Content Image:</label>
@@ -278,8 +271,8 @@
             <div class="preview" id="preview">
               <div>
                 <label>
-                  <img id="previewProfileImg" class="rounded-circle" src="img/profile.png" title="Tweet Generator Preview Profile Photo" alt="Tweet Generator Preview Profile Photo" style="float: left;margin-right: 10px;" width="50" height="50">
-                  <span style="float:left;line-height: 1.35;padding-top: 3px; object-fit: cover;"> 
+                  <img id="previewProfileImg" class="rounded-circle" src="img/profile.png" title="Profile Photo" alt="Profile Photo" style="float: left;margin-right: 10px; object-fit: cover;" width="50" height="50">
+                  <span style="float:left;line-height: 1.35;padding-top: 3px;">
                     <div style="display: inline-flex; align-items: center;">
                       <span id="previewName" style="display:inline-block;color:#14171a;font-size:15px;font-weight: bold;">Name Surname</span>
                       <img id="verifiedImg" src="img/verified-light.png" />
@@ -298,6 +291,8 @@
                 <div id="previewContentImgBlock" style="margin-top: 20px; display: none;">
                   <img id="previewContentImg" src="img/select.png" title="Tweet Generator Preview Post Image" alt="Tweet Generator Preview Post Image" width="100%" style="border-radius: .50rem;">
                 </div>
+					 
+					 <div class="showDate"><span id="previewDate">7:16 PM · 20 июл. 2023 г.</span>· <b id="previewCount" ="color: rgb(0, 0, 0); font-size: 15px;">100</b> <span id="previewViews">views</span></div>
               </div>
             </div>
           </div>
@@ -309,7 +304,7 @@
       <div class="col-md-12">
         <div class="footer">
           <div id="footerLeftText" class="footer-left">
-            All rights reserved &copy; 2018
+            All rights reserved &copy; 2023
           </div>
           <div id="footerRightText" class="footer-right">
             This website coded by <a href="#"><strong>Fırat KAYA</strong></a>
@@ -325,10 +320,65 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <script src="html2canvas.min.js"></script>
   <script type="text/javascript">
-    var d = new Date();
-
+  var currentDate = new Date();
+  /*Ay adları | Month names | Названия месяцев*/
+  var monthNamesLngTr = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+  var monthNamesLngEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var monthNamesLngRu = ["янв.", "фев.", "мар.", "апр.", "май", "июн.", "июл.", "авг.", "сен.", "окт.", "ноя.", "дек."];
+  var monthNames;
+  
+    function writeRussian() {
+      $("html").attr("lang", "ru-RU");
+      $("title").text("Генератор постов в Твиттере");
+      $("#titleText").text("Генератор постов в Твиттере");
+      $("#formThemeText").text("Тема:");
+      $("#formThemeOption0Text").text("Светлая");
+      $("#formThemeOption1Text").text("Темная");
+      $("#formProfileImgText").text("Фото профиля:");
+      $("#formFrameText").text("Рамка:");
+      $("#formFrameOption0Text").text("Круглая");
+      $("#formFrameOption1Text").text("Скругленная");
+      $("#formImgText").text("Фото:");
+      $("#formProfileImg").attr({ title: "Генератор постов Фото профиля", alt: "Генератор постов Фото профиля" });
+      $("#formProfileImgSelectText").html('<i class="fa fa-images"></i> Выбрать<input type="file" name="file" id="formProfileImgSelect"/>');
+      $("#formAccountText").text("Подтвержденный аккаунт:");
+      $("#formAccountOption0Text").text("Нет");
+      $("#formAccountOption1Text").text("Да");
+      $("#accountHelp").text("Рядом с вашим именем появится значок подтвержденной учетной записи..");
+      $("#formNameText").text("Имя:");
+      $("#formName").attr("placeholder", "Имя Фамилия");
+      $("#nameHelp").text("Введите имя, которое будет отображаться на картинке.");
+      $("#formUsernameText").text("Имя пользователя:");
+      $("#formUsername").attr("placeholder", "Имя пользователя");
+      $("#usernameHelp").text("Введите имя пользователя, которое будет отображаться на картинкеe.");
+      $("#verifiedImg").attr({ title: "Подтвержденный аккаунт", alt: "Подтвержденный аккаунт" });
+      $("#formContentText").text("Содержание:");
+      $("#formContent").attr("placeholder", "Напишите текст.");
+      $("#contentHelp").text("*Чтобы добавить ссылку: {{link}}");
+      $("#formContentImgText").text("Изображение к записи:");
+      $("#formContentImgOption0Text").text("Нет изображения");
+      $("#formContentImgOption1Text").text("Изображения доступно");
+      $("#contentImgSelectHelp").text("Добавлено изображение под контентом..");
+      $("#formContentImg").attr({ title: "Генератор постов картинка к записи", alt: "Генератор постов картинка к записи" });
+      $("#formContentImgSelectText").html('<i class="fa fa-images"></i> Выберите IMG<form runat="server"><input type="file" name="file" id="formContentImgSelect"/></form>');
+      $("#formPreviewText").text("Предпросмотр");
+      $("#previewProfileImg").attr({ title: "Генератор постов предпросмотр Фото профиля", alt: "Генератор постов предпросмотр Фото профиля" });
+      $("#previewName").text("Имя Фамилия");
+      $("#previewUsername").text("@username");
+      $("#previewViews").text("просмотров");
+      $("#formCountText").text("Просмотров");
+      $("#formCount").attr("placeholder", "Просмотров");
+      $("#countHelp").text("Укажите нужное кол-во просмотров для показа");
+      $("#previewText").html('Измените этот текст сообщения. <span class="link">@lifeloox</span>');
+      $("#previewContentImg").attr({ title: "Генератор постов предпросмотр изображения к записи", alt: "Генератор постов предпросмотр изображения к записи" });
+      $("#download").html('<i class="fa fa-download"></i> Скачать Скриншот');
+      $("#footerLeftText").html("Все права защищены &copy; " + currentDate.getFullYear());
+      $("#footerRightText").html('Этот веб-сайт сделан <a href="#"><strong>Fırat KAYA</strong></a>');
+      monthNames = monthNamesLngRu;
+    }
     function writeTurkish() {
       $("html").attr("lang", "tr");
+      $("title").text("Twitter Gönderi SS Oluşturucu");
       $("#titleText").text("Twitter Gönderi SS Oluşturucu");
       $("#formThemeText").text("Tema:");
       $("#formThemeOption0Text").text("Beyaz");
@@ -364,15 +414,21 @@
       $("#previewProfileImg").attr({ title: "Tweet Oluşturucu Profil Fotoğrafı Önizlemesi", alt: "Tweet Oluşturucu Profil Fotoğrafı Önizlemesi" });
       $("#previewName").text("İsim Soyisim");
       $("#previewUsername").text("@kullaniciadi");
+      $("#previewViews").text("görüntüleme");
+      $("#formCountText").text("Görüntüleme");
+      $("#formCount").attr("placeholder", "Görüntüleme");
+      $("#countHelp").text("Görüntülenecek istenen görünüm sayısını belirtin");
       $("#previewText").html('Bu yazıyı açıklama bölümünden düzenleyin. <span class="link">@lifeloox</span>');
       $("#previewContentImg").attr({ title: "Tweet Oluşturucu İçerik Resmi Önizlemesi", alt: "Tweet Oluşturucu İçerik Resmi Önizlemesi" });
       $("#download").html('<i class="fa fa-download"></i> Ekran Görüntüsünü İndir');
-      $("#footerLeftText").html("Tüm Hakları Saklıdır &copy; " + d.getFullYear());
-      $("#footerRightText").html('Bu site <a href="#"><strong>Fırat KAYA</strong></a> tarafından kodlandı.');
+      $("#footerLeftText").html("Tüm Hakları Saklıdır &copy; " + currentDate.getFullYear());
+      $("#footerRightText").html('Bu site <a href="#"><strong>Fırat KAYA</strong></a>.');
+      monthNames = monthNamesLngTr;
     }
 
     function writeEnglish() {
       $("html").attr("lang", "en-US");
+      $("title").text("Twitter Post SS Generator");
       $("#titleText").text("Twitter Post SS Generator");
       $("#formThemeText").text("Theme:");
       $("#formThemeOption0Text").text("Light");
@@ -408,30 +464,46 @@
       $("#previewProfileImg").attr({ title: "Tweet Generator Preview Profile Photo", alt: "Tweet Generator Preview Profile Photo" });
       $("#previewName").text("Name Surname");
       $("#previewUsername").text("@username");
+      $("#previewViews").text("views");
+      $("#formCountText").text("Views");
+      $("#formCount").attr("placeholder", "Views");
+      $("#countHelp").text("Specify the desired number of views to display");
       $("#previewText").html('Edit this text on content. <span class="link">@lifeloox</span>');
       $("#previewContentImg").attr({ title: "Tweet Generator Preview Post Image", alt: "Tweet Generator Preview Post Image" });
       $("#download").html('<i class="fa fa-download"></i> Download Screenshot');
-      $("#footerLeftText").html("All rights reserved &copy; " + d.getFullYear());
+      $("#footerLeftText").html("All rights reserved &copy; " + currentDate.getFullYear());
       $("#footerRightText").html('This website coded by <a href="#"><strong>Fırat KAYA</strong></a>');
+      monthNames = monthNamesLngEn;
     }
-
+    
     function langWrite($lang) {
       if ($lang == "tr" || $lang == "tr-TR") {
         writeTurkish();
       } else if ($lang == "en") {
         writeEnglish();
+		} else if ($lang == "ru") {
+        writeRussian();
       } else {
         writeEnglish();
       }
     }
 
-    $(document).ready(function() {
-
-      /*Tarayıcı Diline Göre Yazı Değiştirme*/
-      var browserLang = navigator.language || navigator.userLanguage; // Tarayıcı Dili
+    $(document).ready(function() { 
+      /*Tarayıcı Diline Göre Yazı Değiştirme | Switching Text by Browser Language |  Переключение текста по языку браузера*/
+      var browserLang = navigator.language || navigator.userLanguage; // Tarayıcı Dili | Browser Language | Язык браузера
       langWrite(browserLang);
-
-      /*Sayfa Açıldığında son yazdıkları geri gelecek*/
+      
+      /*Geçerli tarihin oluşumu | Formation of the current date | Формирование текущей даты*/
+      var hours = currentDate.getHours();
+      var minutes = currentDate.getMinutes();
+      var amOrPm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      var month = monthNames[currentDate.getMonth()];
+      var year = currentDate.getFullYear();
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      
+      /*Sayfa Açıldığında son yazdıkları geri gelecek | When the page is opened, the last posts will come back | При открытии страницы вернутся последние сообщения*/
       if (localStorage.getItem("theme") == "1") {
         $("#theme").val(1).change();
         $('.preview').css('background-color', '#000000');
@@ -468,7 +540,7 @@
         $("#previewContentImgBlock").css("display", "block");
       }
 
-      /*Profil resmi çerçeve*/
+      /*Profil resmi çerçeve | Profile picture frame | Рамка профиля*/
       $("#frame").change(function() {
         if ($("#frame").val() == 0) {
           $("#formProfileImg").toggleClass('rounded rounded-circle');
@@ -479,7 +551,7 @@
         }
       });
 
-      /*Tema*/
+      /*Tema | Theme | Тема*/
       $("#theme").change(function() {
         if ($("#theme").val() == 0) {
           $('.preview').css('background-color', '#ffffff');
@@ -498,7 +570,7 @@
         }
       });
 
-      /*Doğrulanmış Hesap*/
+      /*Doğrulanmış Hesap | Verified Account | Подтвержденный аккаунт*/
       $("#formAccountStatus").change(function() {
         if ($("#formAccountStatus").val() == 0) {
           $("#verifiedImg").css("display", "none");
@@ -507,7 +579,7 @@
         }
       });
 
-      /*Açıklama resmi durum*/
+      /*Açıklama resmi durum | Description official status | Описание официальный статус*/
       $("#formContentImgStatus").change(function() {
         if ($("#formContentImgStatus").val() == 0) {
           $("#formContentImgBlock").css("display", "none");
@@ -518,7 +590,7 @@
         }
       });
 
-      /*Yazıları önizle*/
+      /*Yazıları önizle | Preview texts | Предварительный просмотр тексто*/
       $("#formName").keyup(function() {
         if ($(this).val() == "") {
           $("#previewName").text("...");
@@ -548,8 +620,20 @@
           this.value = this.value + "\n";
         }
       });
+      
+       /*Görüntüleme sayısını ayarlama | Setting the number of views | Установка кол-ва просмотров*/
+      $("#formCount").keyup(function() {
+        if ($(this).val() == "") {
+          $("#previewCount").text("100");
+        } else {
+          $("#previewCount").text($(this).val());
+        }
+      });
 
-      /*Profil resmimi önizle*/
+       /*Geçerli tarihi önizlemede ayarlama | Setting the current date in the preview | Установка текущей даты в предварительном просмотре*/
+      $("#previewDate").text(hours + ":" + minutes + " " + amOrPm + " · " + currentDate.getDate() + " " + month + " " + year + " г.");
+		
+      /*Profil resmimi önizle | Preview my profile picture | Предварительный просмотр моей аватарки*/
       function profileReadURL(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
@@ -564,7 +648,7 @@
         profileReadURL(this);
       });
 
-      /*Açıklamadaki resmi önizle*/
+      /*Açıklamadaki resmi önizle | Preview image in description | Превью изображения в описании*/
       function contentReadURL(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
@@ -579,7 +663,7 @@
         contentReadURL(this);
       });
 
-      /*Resim oluştur ve indir*/
+      /*Resim oluştur ve indir | Create and download image | Создать и скачать изображение*/
       $("#download").click(function() {
         $('.preview').css('width', '500px');
         html2canvas(document.querySelector("#preview")).then(canvas => {
@@ -589,7 +673,7 @@
           a.click();
           $('.preview').css('width', 'auto');
         });
-        /*Resim indirilince kullacının bilgisayarına en son yazığı bilgileri kaydet*/
+        /*Resim indirilince kullacının bilgisayarına en son yazığı bilgileri kaydet | Save the latest information on the user's computer when the image is downloaded | Сохранение последней информации на компьютере пользователя при загрузке образа*/
         localStorage.setItem("theme", $("#theme").val());
         localStorage.setItem("frame", $("#frame").val());
         localStorage.setItem("profileImg", $("#formProfileImg").attr("src"));
@@ -602,9 +686,7 @@
         }
         localStorage.setItem("contentImgStatus", $("#formContentImgStatus").val());
       });
-
     });
   </script>
 </body>
-
 </html>
